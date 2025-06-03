@@ -1,6 +1,7 @@
 📊 Crypto Market Analysis Workflow
 Đây là một workflow dành cho n8n sử dụng node LangChain để phân tích thị trường Bitcoin theo thời gian thực, bao gồm giá, khối lượng và các chỉ báo kỹ thuật như RSI, MACD, Stochastic, Bollinger Bands...
 (Lưu ý : sử dụng api free của twele data nên dữ liệu chỉ có thể hỏi được 100 lần một ngày mỗi lần cách 1 phút để tránh trường hợp không gọi được do giới hạn gọi api )
+
 🧠 Mục tiêu
 Phản hồi các tin nhắn gửi đến bằng một phân tích chuyên sâu về thị trường crypto, mô phỏng một chuyên gia đầu tư với 20 năm kinh nghiệm.
 
