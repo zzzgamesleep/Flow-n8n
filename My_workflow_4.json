@@ -1,0 +1,192 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        40
+      ],
+      "id": "0230093d-d7fb-44c5-b9b3-cfa2db2c6e12",
+      "name": "When chat message received",
+      "webhookId": "cd249323-3399-477c-9e3e-d9d99df3857d"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Bạn là một chuyên gia đầu tư với 20 năm kinh nghiệm trong lĩnh vực chứng khoán và crypto. Bạn đồng thời là nhà đầu cơ với khả năng đọc hiểu và phân tích dữ liệu thị trường theo thời gian thực.\n\nDưới đây là dữ liệu thị trường ở dạng JSON, bao gồm giá Bitcoin, thời gian, khối lượng và các chỉ số kỹ thuật:\nGiá BTC: {{ $json.myNewField.fromApi1.bitcoin.usd }}\nThời gian: {{ $json.myNewField.fromApi1.bitcoin.last_updated_at.toDateTime('s').setZone('UTC+7') }}\nChỉ số sợ hãi và tham lam: {{ $json.myNewField.fromApi2.data[0].value }}, thời gian cập nhật: {{ $json.myNewField.fromApi2.data[0].timestamp.toDateTime('s').setZone('UTC+7') }}\n\n**Các chỉ số kỹ thuật:**\n\nRSI:\n\n* 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='1min').data.values[0].rsi }}\n* 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='5min').data.values[0].rsi }}\n* 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='15min').data.values[0].rsi }}\n* 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='30min').data.values[0].rsi }}\n* 1h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='1h').data.values[0].rsi }}\n* 4h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='4h').data.values[0].rsi }}\n* 1day:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='1day').data.values[0].rsi }}\n* 1week: {{$json.myNewField.fromApi4.find(i => i.indicator==='rsi'   && i.interval==='1week').data.values[0].rsi }}\n\nMACD:\n\n* 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='1min').data.values[0].macd }}\n* 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='5min').data.values[0].macd }}\n* 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='15min').data.values[0].macd }}\n* 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='30min').data.values[0].macd }}\n* 1h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='1h').data.values[0].macd }}\n* 4h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='4h').data.values[0].macd }}\n* 1day:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='1day').data.values[0].macd }}\n* 1week: {{ $json.myNewField.fromApi4.find(i => i.indicator==='macd'  && i.interval==='1week').data.values[0].macd }}\n\nSTOCHASTIC (KDJ):\n\n* slowK 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1min').data.values[0].slow_k }}\n* slowD 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1min').data.values[0].slow_d }}\n* slowK 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='5min').data.values[0].slow_k }}\n* slowD 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='5min').data.values[0].slow_d }}\n* slowK 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='15min').data.values[0].slow_k }}\n* slowD 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='15min').data.values[0].slow_d }}\n* slowK 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='30min').data.values[0].slow_k }}\n* slowD 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='30min').data.values[0].slow_d }}\n* slowK 1h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1h').data.values[0].slow_k }}\n* slowD 1h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1h').data.values[0].slow_d }}\n* slowK 4h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='4h').data.values[0].slow_k }}\n* slowD 4h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='4h').data.values[0].slow_d }}\n* slowK 1day: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1day').data.values[0].slow_k }}\n* slowD 1day: {{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1day').data.values[0].slow_d }}\n* slowK 1week:{{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1week').data.values[0].slow_k }}\n* slowD 1week:{{ $json.myNewField.fromApi4.find(i => i.indicator==='stoch' && i.interval==='1week').data.values[0].slow_d }}\n\nBollingerBands:\n\n* lower 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1min').data.values[0].lower_band }}\n* middle 1min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1min').data.values[0].middle_band }}\n* upper 1min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1min').data.values[0].upper_band }}\n* lower 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='5min').data.values[0].lower_band }}\n* middle 5min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='5min').data.values[0].middle_band }}\n* upper 5min:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='5min').data.values[0].upper_band }}\n* lower 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='15min').data.values[0].lower_band }}\n* middle 15min:{{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='15min').data.values[0].middle_band }}\n* upper 15min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='15min').data.values[0].upper_band }}\n* lower 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='30min').data.values[0].lower_band }}\n* middle 30min:{{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='30min').data.values[0].middle_band }}\n* upper 30min: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='30min').data.values[0].upper_band }}\n* lower 1h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1h').data.values[0].lower_band }}\n* middle 1h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1h').data.values[0].middle_band }}\n* upper 1h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1h').data.values[0].upper_band }}\n* lower 4h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='4h').data.values[0].lower_band }}\n* middle 4h:   {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='4h').data.values[0].middle_band }}\n* upper 4h:    {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='4h').data.values[0].upper_band }}\n* lower 1day:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1day').data.values[0].lower_band }}\n* middle 1day: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1day').data.values[0].middle_band }}\n* upper 1day:  {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1day').data.values[0].upper_band }}\n* lower 1week: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1week').data.values[0].lower_band }}\n* middle 1week:{{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1week').data.values[0].middle_band }}\n* upper 1week: {{ $json.myNewField.fromApi4.find(i => i.indicator==='bbands' && i.interval==='1week').data.values[0].upper_band }}\n\n**YÊU CẦU PHÂN TÍCH**\n\n1. **Xu hướng chung** trong ba khung thời gian chính:\n\n   * **Ngắn hạn** (1min → 1h): Đánh giá diễn biến RSI, MACD, STOCH và BollingerBands để xác định pha điều chỉnh hay tiếp tục xu hướng.\n   * **Trung hạn** (4h → 1day): So sánh liệu tín hiệu kỹ thuật có đồng thuận giữa các chỉ báo hay không.\n   * **Dài hạn** (1week): Xác nhận xu hướng tổng thể của BTC qua phễu BollingerBands và mức quá mua/quá bán trên RSI.\n\n2. **Tín hiệu mua/bán** cho mỗi chỉ báo:\n\n   * **RSI**: `<30` → Mua, `>70` → Bán, ngược lại → Giữ.\n   * **MACD**: đường MACD cắt tín hiệu → Mua/Bán.\n   * **STOCH**: slowK cắt slowD → Mua/Bán.\n   * **BollingerBands**: chạm dải dưới → Mua, chạm dải trên → Bán.\n\n3. **Tổng hợp tín hiệu**:\n\n   * Kết luận chung tại ba khung (Ngắn, Trung, Dài): **Mua** / **Bán** / **Giữ**, kèm giá entry & exit.\n\n4. **Phân tích tín hiệu trái chiều** (nếu có).\n\n5. **Mục tiêu giá & quản trị rủi ro**: đề xuất take-profit & stop-loss phù hợp.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        300,
+        -20
+      ],
+      "id": "4f37ba00-71ec-48ac-9dcd-e6d240bc0e54",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "jsCode": "const returnItems = await Promise.all(\n  $input.all().map(async (item) => {\n    const api1Result = await this.helpers.request({\n      method: \"GET\",\n      url: \"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,vnd&include_last_updated_at=true\",\n      json: true,\n    });\n\n    const api2Result = await this.helpers.request({\n      method: \"GET\",\n      url: \"https://api.alternative.me/fng\",\n      json: true,\n    });\n\n    const api3Result = await this.helpers.request({\n      method: \"GET\",\n      url: \"https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT\",\n      json: true,\n    });\n\n    item.json.myNewField = {\n      fromApi1: api1Result,\n      fromApi2: api2Result,\n      fromApi3: api3Result,\n    };\n\n    return item;\n  })\n);\n\nreturn returnItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "4ce91a39-38ae-4f7a-9d58-ac8262cd5106",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Danh sách API key\nconst apis = [\n  { name: 'API1', url: 'https://api.twelvedata.com', key: '1fd564b94f254565904c8500cc9a6e25' },\n  { name: 'API2', url: 'https://api.twelvedata.com', key: 'e4aa7a79d1f9404a99d17f9efc08dcb3' },\n  { name: 'API3', url: 'https://api.twelvedata.com', key: '79595ab840b34e739c2d9c280c2b786a' },\n  { name: 'API4', url: 'https://api.twelvedata.com', key: '8beaaa2299b34061a397d179e1fc58a5' },\n  { name: 'API5', url: 'https://api.twelvedata.com', key: '3b3cd52e012144c188487a47cbf13992' },\n];\n\n// Hàm gọi API cho một chỉ số với khoảng thời gian cụ thể\nasync function callAPI(api, indicator, interval) {\n  try {\n    let url = `${api.url}/${indicator}?symbol=BTC/USD&interval=${interval}&apikey=${api.key}&outputsize=1`;\n    \n    // Thêm tham số tùy theo chỉ số\n    if (indicator === 'rsi') url += '&time_period=14';\n    else if (indicator === 'macd') url += '&fast_period=12&slow_period=26&signal_period=9';\n    else if (indicator === 'stoch') url += '&fastk_period=14&slowk_period=3&slowd_period=3';\n    else if (indicator === 'sma') url += '&time_period=20';\n    else if (indicator === 'bbands') url += '&time_period=20&nbdevup=2&nbdevdn=2&matype=0';\n\n    const response = await this.helpers.request({\n      method: 'GET',\n      url: url,\n      json: true,\n    });\n\n    return { indicator, interval, data: response, timestamp: new Date().toISOString() };\n  } catch (error) {\n    console.log(`Lỗi từ ${api.name} - ${indicator} (${interval}):`, error.message);\n    throw error;\n  }\n}\n\n// Hàm lấy dữ liệu cho tất cả chỉ số và khoảng thời gian\nasync function getAllIndicators(intervals, apis) {\n  const indicators = ['rsi', 'macd', 'stoch', 'sma', 'bbands'];\n  const promises = [];\n  let apiIndex = 0; // Biến để luân phiên API key\n\n  // Tạo danh sách các request\n  intervals.forEach(interval => {\n    indicators.forEach(indicator => {\n      const api = apis[apiIndex % apis.length]; // Luân phiên qua 5 API key\n      promises.push(callAPI(api, indicator, interval));\n      apiIndex++;\n    });\n  });\n\n  const results = await Promise.all(promises);\n  return results;\n}\n\n// Chạy chương trình và trả về kết quả cho n8n\nasync function main() {\n  try {\n    const intervals = ['1min', '5min', '15min', '30min', '1h', '4h', '1day', '1week'];\n    const results = await getAllIndicators(intervals, apis);\n\n    // Trả về một item duy nhất, chứa mảng chỉ số kỹ thuật\n    const item = {\n      json: {\n        myNewField: {\n          fromApi4: results\n        }\n      }\n    };\n    return [item];\n  } catch (error) {\n    console.log('Lỗi:', error);\n    throw error; // Ném lỗi để n8n xử lý\n  }\n}\n\nreturn main();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        200
+      ],
+      "id": "d77c568e-6b67-49dd-aae2-d758f0ef363c",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -40,
+        0
+      ],
+      "id": "013c42c4-b4c8-4041-a84a-fd194988337e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1-0528:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        160,
+        180
+      ],
+      "id": "5ec7a70c-dc7d-4de8-a185-eba8160c2768",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "Ix4gp5Eu2Q8slyQi",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        380,
+        200
+      ],
+      "id": "9c9bc4f7-4b3c-4396-ba96-fde1b380e583",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ce27b6e2-7ea1-4207-bf76-a6e93dfbad56",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5ffaebdf9f3079dfa0b82d12fcef418d15b6eaf4e5bb4296b376d0cba2cb1bc1"
+  },
+  "id": "4ebEKQVAZwW4Fdnb",
+  "tags": []
+}
